@@ -1460,37 +1460,43 @@ noPrincipalPeriods = 0;
 ให้ถือว่าไม่สามารถใช้หนี้หมด
 */
 
+/*
+    หากไม่มีการตัดเงินต้นติดต่อกัน 20 ปี
+    ให้หยุดการคำนวณ
+
+    รายเดือน: 240 งวด = 20 ปี
+    รายปี: 20 งวด = 20 ปี
+*/
+
+const MAX_NO_PRINCIPAL_YEARS = 20;
+
+const maxNoPrincipalPeriods =
+    MAX_NO_PRINCIPAL_YEARS * periodsPerYear;
+
 if (
-noPrincipalPeriods >= 24
+    noPrincipalPeriods >= maxNoPrincipalPeriods
 ) {
 
-return {
+    return {
 
-status:
-"impossible",
+        status: "impossible",
 
-message:
-"หากชำระตามจำนวนเงินที่กรอก จะไม่สามารถใช้หนี้จนหมดได้",
+        message:
+            "หากชำระตามจำนวนเงินที่กรอก จะไม่สามารถใช้หนี้จนหมดได้",
 
-periods:
-period,
+        periods: period,
 
-totalInterestPaid:
-totalInterestPaid,
+        totalInterestPaid: totalInterestPaid,
 
-totalPrincipalPaid:
-totalPrincipalPaid,
+        totalPrincipalPaid: totalPrincipalPaid,
 
-totalPayment:
-totalPayment,
+        totalPayment: totalPayment,
 
-rows:
-rows
+        rows: rows
 
-};
+    };
 
 }
-
 
 
 /*
